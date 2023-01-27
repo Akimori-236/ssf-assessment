@@ -42,4 +42,38 @@ public class Pizza {
         this.quantity = quantity;
     }
 
+    public Double cost() {
+        Double cost = 0d;
+
+        // type of pizza
+        switch (this.getPizza()) {
+            case "bella":
+            case "marinara":
+            case "spianatacalabrese":
+                cost = 30d;
+                break;
+            case "margherita":
+                cost = 22d;
+                break;
+            case "trioformaggio":
+                cost = 25d;
+                break;
+            default:
+                System.err.println("ERROR>>> Pizza type not valid");
+        }
+
+        switch (this.getSize()) {
+            case "sm":
+                break;
+            case "md":
+                cost *= 1.2;
+                break;
+            case "lg":
+                cost *= 1.5;
+                break;
+            default:
+                System.err.println("ERROR>>> Pizza size not valid");
+        }
+        return cost;
+    }
 }

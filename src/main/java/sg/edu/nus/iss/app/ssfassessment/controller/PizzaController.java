@@ -1,5 +1,6 @@
 package sg.edu.nus.iss.app.ssfassessment.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,10 +12,14 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import sg.edu.nus.iss.app.ssfassessment.model.Order;
 import sg.edu.nus.iss.app.ssfassessment.model.Pizza;
+import sg.edu.nus.iss.app.ssfassessment.repository.PizzaRepository;
 
 @Controller
 @RequestMapping(path = "/pizza")
 public class PizzaController {
+
+    @Autowired
+    private PizzaRepository pizzaRepo;
 
     @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String pizzaForm(@Valid Pizza pizza, BindingResult binding, Model model, HttpSession session) {
@@ -23,6 +28,7 @@ public class PizzaController {
             model.addAttribute("pizza", pizza);
             return "index";
         }
+        // store pizza
         session.setAttribute("pizza", pizza);
         System.out.println("NEW ORDER: %s x %s (%s)".formatted(pizza.getQuantity(), pizza.getPizza(), pizza.getSize()));
         model.addAttribute("order", new Order());
@@ -36,10 +42,15 @@ public class PizzaController {
             model.addAttribute("order", order);
             return "deliverydetails";
         }
-        Pizza pizza = (Pizza)session.getAttribute("pizza");
-        System.out.println("%s from %s ordered %s pizza".formatted(order.getName(), order.getAddress(), pizza.getPizza()));
+        Pizza pizza = (Pizza) session.getAttribute("pizza");
+        order.setPizza(pizza);
+        session.setAttribute("order", order);
+        System.out.println("%s from %s ordered %s pizza".formatted(order.getName(), order.getAddress(),
+                pizza.getPizza()));
+
         model.addAttribute("order", order);
         model.addAttribute("pizza", pizza);
-        return "success";
+        pizzaRepo.saveOrder(order);
+        return "confirmation";
     }
 }

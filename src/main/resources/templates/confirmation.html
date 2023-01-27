@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+    </head>
+    <body>
+        <h1>Delivery Details</h1>
+        <table data-th-object="${order}">
+            <tr>
+                <td>
+                    <p>Order Number:</p>
+                </td>
+                <td data-th-text="*{id}"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <span>Your order will be delivered to </span
+                    ><span data-th-text="*{address}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td><p>Pizza cost:</p></td>
+                <td><p data-th-text="${pizza.cost}"></p></td>
+            </tr>
+            <tr data-th-if="*{rush}">
+                <td><p>Rush:</p></td>
+                <td><p>$2</p></td>
+            </tr>
+            <tr>
+                <td>Total cost:</td>
+                <!-- <td data-th-text="*{totalCost}"></td> -->
+            </tr>
+        </table>
+    </body>
+</html>
