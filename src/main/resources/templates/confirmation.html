@@ -13,7 +13,11 @@
                 <td>
                     <p>Order Number:</p>
                 </td>
-                <td data-th-text="*{id}"></td>
+                <td>
+                    <a data-th-href="'/order/' + *{id}">
+                        <p data-th-text="*{id}"></p>
+                    </a>
+                </td>
             </tr>
             <tr>
                 <td colspan="2">
@@ -23,7 +27,10 @@
             </tr>
             <tr>
                 <td><p>Pizza cost:</p></td>
-                <td>$<p data-th-text="*{pizza.cost}"></p></td>
+                <td>
+                    $
+                    <p data-th-text="*{pizza.cost}"></p>
+                </td>
             </tr>
             <tr data-th-if="*{rush}">
                 <td><p>Rush:</p></td>
@@ -31,7 +38,10 @@
             </tr>
             <tr>
                 <td>Total cost:</td>
-                <td>$<p data-th-text="*{totalCost}"></p></td>
+                <td>
+                    $
+                    <p data-th-text="*{totalCost}"></p>
+                </td>
             </tr>
         </table>
     </body>
