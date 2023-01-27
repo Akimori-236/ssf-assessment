@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.validation.Valid;
+import sg.edu.nus.iss.app.ssfassessment.model.Order;
 import sg.edu.nus.iss.app.ssfassessment.model.Pizza;
 
 @Controller
@@ -21,11 +22,15 @@ public class PizzaController {
             model.addAttribute("pizza", pizza);
             return "index";
         }
+        System.out.println("NEW ORDER: %s x %s (%s)".formatted(pizza.getQuantity(), pizza.getPizza(), pizza.getSize()));
+        Order order = new Order();
+        order.setPizza(pizza);
+        model.addAttribute("order", order);
         return "deliverydetails";
     }
 
     @PostMapping(path = "/order")
     public String detailsForm() {
-        return "";
+        return "success";
     }
 }
