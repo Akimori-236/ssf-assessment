@@ -12,7 +12,7 @@
             crossorigin="anonymous"
         />
     </head>
-    <body>
+    <body class="container">
         <div class="title">
             <div><img src="/images/logo.jpg" class="thumbnail" /></div>
             <h2>Panucci's Pizza</h2>
@@ -21,7 +21,7 @@
         <form method="POST" action="pizza">
             <div>
                 <h2>Select a pizza</h2>
-                <table>
+                <table class="table table-borderless">
                     <tr>
                         <td>
                             <div>
@@ -101,7 +101,7 @@
                     <tr>
                         <td>Size:</td>
                         <td>
-                            <select name="size">
+                            <select class="form-select" name="size">
                                 <option value="sm">Small</option>
                                 <option value="md">Medium</option>
                                 <option value="lg">Large</option>
@@ -117,7 +117,9 @@
                     <tr>
                         <td></td>
                         <td>
-                            <button class="btn btn-secondary" type="submit">Next</button>
+                            <button class="btn btn-success" type="submit">
+                                Next
+                            </button>
                         </td>
                     </tr>
                 </table>
