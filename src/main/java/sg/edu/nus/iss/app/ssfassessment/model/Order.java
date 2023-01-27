@@ -1,14 +1,13 @@
 package sg.edu.nus.iss.app.ssfassessment.model;
 
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 
 public class Order {
-    @NotNull(message = "Name cannot be null")
     @Size(min = 3, message = "Name must be minimum 3 characters")
     private String name;
 
-    @NotNull(message = "Address cannot be null")
+    @NotEmpty(message = "Address cannot be empty")
     private String address;
 
     @Size(min = 8, max=8, message = "Phone number must be 8 digits")
@@ -17,8 +16,6 @@ public class Order {
     private Boolean rush = false;
     
     private String comments;
-
-    private Pizza pizza;
 
     public String getName() {
         return name;
@@ -58,14 +55,6 @@ public class Order {
 
     public void setComments(String comments) {
         this.comments = comments;
-    }
-
-    public Pizza getPizza() {
-        return pizza;
-    }
-
-    public void setPizza(Pizza pizza) {
-        this.pizza = pizza;
     }
 
 }

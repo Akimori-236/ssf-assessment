@@ -1,12 +1,9 @@
 package sg.edu.nus.iss.app.ssfassessment.model;
 
-import org.hibernate.validator.constraints.Length;
-
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
 
 public class Pizza {
     @NotNull(message = "Please select pizza type")
