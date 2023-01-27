@@ -4,9 +4,9 @@
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
+        <title>Delivery Details Confirmation</title>
     </head>
-    <body>
+    <body class="container">
         <h1>Delivery Details</h1>
         <table data-th-object="${order}">
             <tr>
@@ -23,7 +23,7 @@
             </tr>
             <tr>
                 <td><p>Pizza cost:</p></td>
-                <td><p data-th-text="${pizza.cost}"></p></td>
+                <td>$<p data-th-text="*{pizza.cost}"></p></td>
             </tr>
             <tr data-th-if="*{rush}">
                 <td><p>Rush:</p></td>
@@ -31,7 +31,7 @@
             </tr>
             <tr>
                 <td>Total cost:</td>
-                <!-- <td data-th-text="*{totalCost}"></td> -->
+                <td>$<p data-th-text="*{totalCost}"></p></td>
             </tr>
         </table>
     </body>

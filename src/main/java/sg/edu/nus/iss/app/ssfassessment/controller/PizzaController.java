@@ -12,14 +12,14 @@ import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import sg.edu.nus.iss.app.ssfassessment.model.Order;
 import sg.edu.nus.iss.app.ssfassessment.model.Pizza;
-import sg.edu.nus.iss.app.ssfassessment.repository.PizzaRepository;
+import sg.edu.nus.iss.app.ssfassessment.service.PizzaService;
 
 @Controller
 @RequestMapping(path = "/pizza")
 public class PizzaController {
 
     @Autowired
-    private PizzaRepository pizzaRepo;
+    private PizzaService pizzaSvc;
 
     @PostMapping(consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String pizzaForm(@Valid Pizza pizza, BindingResult binding, Model model, HttpSession session) {
@@ -42,15 +42,9 @@ public class PizzaController {
             model.addAttribute("order", order);
             return "deliverydetails";
         }
-        Pizza pizza = (Pizza) session.getAttribute("pizza");
-        order.setPizza(pizza);
-        session.setAttribute("order", order);
-        System.out.println("%s from %s ordered %s pizza".formatted(order.getName(), order.getAddress(),
-                pizza.getPizza()));
+        pizzaSvc.saveOrder(order, session);
 
         model.addAttribute("order", order);
-        model.addAttribute("pizza", pizza);
-        pizzaRepo.saveOrder(order);
         return "confirmation";
     }
 }
