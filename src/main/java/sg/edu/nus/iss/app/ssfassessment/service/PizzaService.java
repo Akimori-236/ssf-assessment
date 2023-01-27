@@ -22,4 +22,10 @@ public class PizzaService {
                 order.getPizza().getPizza()));
         pizzaRepo.saveOrder(order);
     }
+
+    public String getJsonById(String orderId) {
+        String jsonStr = pizzaRepo.getJsonById(orderId);
+        return jsonStr;
+    }
+
 }

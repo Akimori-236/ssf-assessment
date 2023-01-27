@@ -16,5 +16,8 @@ public class PizzaRepository {
         redisTemplate.opsForHash().put("Orders_Map", order.getId(), order.getJsonString());
     }
 
-    
+    public String getJsonById(String orderId) {
+        String jsonStr = (String) redisTemplate.opsForHash().get("Orders_Map", orderId);
+        return jsonStr;
+    }
 }
