@@ -14,9 +14,10 @@ public class Pizza {
     @Pattern(regexp = "^(sm|md|lg)$", message = "Pizza size not available")
     private String size;
 
+    @NotNull(message = "Please enter number of pizzas")
     @Min(value = 1, message = "Minimum order is 1")
     @Max(value = 10, message = "Maximum order is 10")
-    private int quantity;
+    private Integer quantity;
 
     public String getSize() {
         return size;
@@ -34,11 +35,11 @@ public class Pizza {
         this.pizza = pizza;
     }
 
-    public int getQuantity() {
+    public Integer getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
 
