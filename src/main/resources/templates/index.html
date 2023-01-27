@@ -12,7 +12,12 @@
             <h2>Panucci's Pizza</h2>
         </div>
 
-        <form method="POST" action="pizza">
+        <form
+            method="POST"
+            action="#"
+            data-th-action="@{/pizza}"
+            data-th-object="${pizza}"
+        >
             <div>
                 <h2>Select a pizza</h2>
                 <table>
@@ -93,6 +98,15 @@
                         </td>
                     </tr>
                     <tr>
+                        <td>
+                            <p
+                                class="error"
+                                data-th-if="${#fields.hasErrors('pizza')}"
+                                data-th-errors="*{pizza}"
+                            ></p>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>Size:</td>
                         <td>
                             <select name="size">
@@ -101,11 +115,25 @@
                                 <option value="lg">Large</option>
                             </select>
                         </td>
+                        <td>
+                            <p
+                                class="error"
+                                data-th-if="${#fields.hasErrors('size')}"
+                                data-th-errors="*{size}"
+                            ></p>
+                        </td>
                     </tr>
                     <tr>
                         <td>Quantity:</td>
                         <td>
-                            <input type="number" min="1" name="quantity" />
+                            <input type="number" min="0 " name="quantity" />
+                        </td>
+                        <td>
+                            <p
+                                class="error"
+                                data-th-if="${#fields.hasErrors('quantity')}"
+                                data-th-errors="*{quantity}"
+                            ></p>
                         </td>
                     </tr>
                     <tr>
